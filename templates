@@ -1,1 +1,58 @@
+<!-- index.html -->
 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Diet App - Healthy or Not?</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+<div class="container">
+    <h1>Diet App - Healthy or Not?</h1>
+
+    <!-- Food Health Checker Form -->
+    <form method="POST">
+        <label for="food">Enter food name:</label>
+        <input type="text" id="food" name="food" required>
+        <input type="submit" name="check_food" value="Check">
+    </form>
+
+    {% if result %}
+        <h3>Result:</h3>
+        <p>{{ result }}</p>
+    {% endif %}
+
+    <!-- Preferences and Goals Form -->
+    <h2>Set Your Dietary Preferences</h2>
+    <form method="POST">
+        <label for="goal">Health Goal:</label>
+        <input type="text" id="goal" name="goal" placeholder="e.g. Weight loss, muscle gain">
+
+        <label for="dietary_restrictions">Dietary Restrictions:</label>
+        <input type="text" id="dietary_restrictions" name="dietary_restrictions" placeholder="e.g. Vegan, Gluten-free">
+
+        <label for="preferences">Food Preferences:</label>
+        <input type="text" id="preferences" name="preferences" placeholder="e.g. High protein, Low carb">
+
+        <input type="submit" name="set_preferences" value="Save Preferences">
+    </form>
+
+    <!-- AI Question Form -->
+    <h2>Ask AI a Diet Question</h2>
+    <form method="POST">
+        <label for="query">Your question:</label>
+        <input type="text" id="query" name="query" placeholder="Ask anything about your diet!" required>
+        <input type="submit" name="ask_ai" value="Ask">
+    </form>
+
+    {% if query_response %}
+        <h3>AI Response:</h3>
+        <p>{{ query_response }}</p>
+    {% endif %}
+</div>
+
+</body>
+</html>
